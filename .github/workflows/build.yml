@@ -70,5 +70,5 @@ jobs:
         whoami
         df -h
         pwd
-        docker info
-        docker version
+        # docker info
+        # docker version
