@@ -60,7 +60,6 @@ jobs:
         set -e
         hostname
         whoami
-        lscpu
         free
         df -h
         pwd
