@@ -62,7 +62,6 @@ jobs:
         set -e
         hostname
         whoami
-        free
         df -h
         pwd
         docker info
