@@ -23,6 +23,7 @@ jobs:
         systeminfo
         Get-PSDrive
         Get-Location
+        $PSVersionTable
   windows-2019:
     runs-on: windows-2019
     steps:
@@ -35,6 +36,7 @@ jobs:
         systeminfo
         Get-PSDrive
         Get-Location
+        $PSVersionTable
   ubuntu-16-04:
     runs-on: ubuntu-16.04
     steps:
