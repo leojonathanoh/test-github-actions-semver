@@ -23,7 +23,10 @@ jobs:
         systeminfo
         Get-PSDrive
         Get-Location
-        $PSVersionTable
+        # pwsh version
+        $PSVersionTable 
+        # Windows Powershell version?
+        powershell -Command '$PSVersionTable'
   windows-2019:
     runs-on: windows-2019
     steps:
@@ -36,7 +39,10 @@ jobs:
         systeminfo
         Get-PSDrive
         Get-Location
+        # pwsh version
         $PSVersionTable
+        # Windows Powershell version?
+        powershell -Command '$PSVersionTable'
   ubuntu-16-04:
     runs-on: ubuntu-16.04
     steps:
