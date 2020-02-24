@@ -1,0 +1,69 @@
+name: build
+
+on:
+  push:
+    branches:
+    - '**'
+    tags:
+    - '**'
+  pull_request:
+    branches:
+    - '**'
+
+jobs:
+  windows-2016:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display system info (windows)
+      run: |
+        Set-StrictMode -Version Latest; $ErrorActionPreference = 'Stop'
+        hostname
+        whoami
+        systeminfo
+        Get-PSDrive
+        Get-Location
+  windows-2019:
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display system info (windows)
+      run: |
+        Set-StrictMode -Version Latest; $ErrorActionPreference = 'Stop'
+        hostname
+        whoami
+        systeminfo
+        Get-PSDrive
+        Get-Location
+  ubuntu-16-04:
+    runs-on: ubuntu-16.04
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display system info (linux)
+      run: |
+        set -e
+        hostname
+        whoami
+        cat /etc/*release
+        lscpu
+        free
+        df -h
+        pwd
+        docker info
+        docker version
+  macos-10-15:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v1
+    - name: Display system info (macos)
+      run: |
+        set -e
+        hostname
+        whoami
+        cat /etc/*release
+        lscpu
+        free
+        df -h
+        pwd
+        docker info
+        docker version
