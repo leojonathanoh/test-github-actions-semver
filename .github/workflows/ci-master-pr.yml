@@ -112,7 +112,7 @@ jobs:
         hostname
         whoami
         cat /etc/*release
-        lscpu
+        # lscpu
         free
         df -h
         pwd
@@ -135,7 +135,7 @@ jobs:
         hostname
         whoami
         cat /etc/*release
-        lscpu
+        # lscpu
         free
         df -h
         pwd
@@ -158,7 +158,7 @@ jobs:
         hostname
         whoami
         cat /etc/*release
-        lscpu
+        # lscpu
         free
         df -h
         pwd
@@ -181,7 +181,7 @@ jobs:
         hostname
         whoami
         cat /etc/*release
-        lscpu
+        # lscpu
         free
         df -h
         pwd
@@ -204,7 +204,7 @@ jobs:
         hostname
         whoami
         cat /etc/*release
-        lscpu
+        # lscpu
         free
         df -h
         pwd
