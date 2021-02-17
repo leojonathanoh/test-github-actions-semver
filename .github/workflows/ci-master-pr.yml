@@ -95,7 +95,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
@@ -118,7 +118,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
@@ -141,7 +141,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
@@ -164,7 +164,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
@@ -187,7 +187,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
@@ -210,7 +210,7 @@ jobs:
         pwd
     - name: Powershell version
       run: |
-        pwsh -Version -NoLogo -NonInteractive -NoProfile
+        pwsh -Command '$PSVersionTable' -NoLogo -NonInteractive -NoProfile
     - name: Test
       run: |
         pwsh -Command test/test.ps1 -NoLogo -NonInteractive -NoProfile
