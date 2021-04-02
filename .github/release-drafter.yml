@@ -1,5 +1,5 @@
-name-template: '$NEXT_PATCH_VERSION 🌈'
-tag-template: '$NEXT_PATCH_VERSION'
+name-template: 'v$RESOLVED_VERSION  🌈'
+tag-template: 'v$RESOLVED_VERSION '
 categories:
   - title: '🚀 Features'
     labels:
@@ -23,6 +23,27 @@ categories:
   - title: '🧰 Maintenance'
     label: 'chore'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+version-resolver:
+  major:
+    labels:
+      # - 'major'
+      - 'breaking'
+  minor:
+    labels:
+      # - 'minor'
+      - 'feature'
+      - 'enhancement'
+      - 'refactor'
+  patch:
+    labels:
+      # - 'patch'
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+      - 'style'
+      - 'docs'
+      - 'documentation'
+  default: patch
 sort-by: title
 template: |
   ## Changes
