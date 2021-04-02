@@ -209,7 +209,7 @@ jobs:
         # lscpu
         free
         df -h
-        pwd`
+        pwd
     - name: Powershell version
       run: |
         pwsh -NoLogo -NonInteractive -NoProfile -Command '$PSVersionTable'
@@ -229,6 +229,7 @@ jobs:
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: toolmantim/release-drafter@v5.2.0
         with:
+          config-name: release-drafter-date.yaml
           publish: true
           # tag: ${{ env.REF }}
         env:
