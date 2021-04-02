@@ -238,7 +238,7 @@ jobs:
               TAG="$TODAYS_DATE.0.0" # Send this to stdout
           else
               # E.g. if there are  20210402.0.0,  20210402.0.1,  20210402.0.2, this returns 2
-              VERSION_MINOR_LATEST=$( echo "$TODAYS_DATE_TAGS" | cut -d '.' -f 3 | sort -nr )
+              VERSION_MINOR_LATEST=$( echo "$TODAYS_DATE_TAGS" | cut -d '.' -f 3 | sort -nr | head n1 )
               # Minor version
               VERSION_MINOR=$( expr "$VERSION_MINOR_LATEST" + 1 )
               # E.g. 20210402.0.3
