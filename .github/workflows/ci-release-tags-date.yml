@@ -220,10 +220,11 @@ jobs:
           fetch-depth: 2
       - name: tag-new-version
         run: |
+          set +e
           # E.g. 20210402
           TODAYS_DATE=$( date -u '+%Y%m%d' )
           # Is this the first tag for this date?
-          TODAYS_DATE_TAGS=$( git tag | grep "^$TODAYS_DATE" )
+          TODAYS_DATE_TAGS=$( git tag -l | grep "^$TODAYS_DATE" )
           TAG=
           if [ -z "$TODAYS_DATE_TAGS" ]; then
               # E.g. git tag 20210402.0.0
@@ -237,4 +238,4 @@ jobs:
               TAG="$TODAYS_DATE.0.$VERSION_MINOR"  # Send this to stdout
           fi
           echo "TAG: $TAG"
-          git push origin "$TAG"
+          git push origin "$TAG" || exit 1
