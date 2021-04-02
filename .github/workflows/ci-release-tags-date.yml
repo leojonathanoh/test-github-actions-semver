@@ -248,3 +248,22 @@ jobs:
           git tag "$TAG"
           git --no-pager log --graph --oneline --decorate --tags  2>&1 | grep "$TAG"
           git push origin --tags || exit 1
+
+  publish-draft-release:
+    needs: [windows-2016, windows-2019, ubuntu-16-04, macos-10-15, test-powershell-6-0, test-powershell-6-1, test-powershell-6-1, test-powershell-7-0, test-powershell-7-1, test-powershell-7-2]
+    if: github.ref == 'refs/heads/release-tags-date'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # - name: Set REF environment variable
+      #   run: |
+      #     REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
+      #     echo "REF=$REF" >> $GITHUB_ENV
+      # Drafts your next Release notes as Pull Requests are merged into "master"
+      - uses: release-drafter/release-drafter@v5
+        with:
+          # config-name: release-drafter.yaml
+          publish: true
+          # tag: ${{ env.REF }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
