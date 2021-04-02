@@ -218,7 +218,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - name: tag-new-version
+      - name: tag-new-versions
         run: |
           set +e
           # E.g. 20210402
@@ -227,14 +227,14 @@ jobs:
           TODAYS_DATE_TAGS=$( git tag -l | grep "^$TODAYS_DATE" )
           TAG=
           if [ -z "$TODAYS_DATE_TAGS" ]; then
-              # E.g. git tag 20210402.0.0
+              # E.g. 20210402.0.0
               TAG="$TODAYS_DATE.0.0" # Send this to stdout
           else
               # E.g. if there are  20210402.0.0,  20210402.0.1,  20210402.0.2, this returns 2
               VERSION_MINOR_LATEST=$( echo "$TODAYS_DATE_TAGS" | cut -d '.' -f 3 | sort -nr )
-              # Our minor version
-              VERSION_MINOR=$( "$VERSION_MINOR_LATEST" + 1 )
-              # E.g. git tag 20210402.0.3
+              # Minor version
+              VERSION_MINOR=$( expr "$VERSION_MINOR_LATEST" + 1 )
+              # E.g. 20210402.0.3
               TAG="$TODAYS_DATE.0.$VERSION_MINOR"  # Send this to stdout
           fi
           echo "TAG: $TAG"
