@@ -1,0 +1,30 @@
+name-template: 'XXXXXXXX.X.X 🌈'
+tag-template: 'XXXXXXXX.X.X'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '🖊️ Refactors'
+    labels:
+      - 'refactor'
+  - title: '👗 Style'
+    labels:
+      - 'style'
+  - title: '📝 Documentation'
+    labels:
+      - 'docs'
+      - 'documentation'
+  - title: '🧰 Maintenance'
+    label: 'chore'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+sort-by: title
+template: |
+  ## Changes
+
+  $CHANGES
