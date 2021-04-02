@@ -1,5 +1,5 @@
-name-template: 'XXXXXXXX.X.X 🌈'
-tag-template: 'XXXXXXXX.X.X'
+name-template: 'YYYYMMDD.X.X 🌈'
+tag-template: 'YYYYMMDD.X.X'
 categories:
   - title: '🚀 Features'
     labels:
