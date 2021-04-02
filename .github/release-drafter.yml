@@ -44,6 +44,7 @@ version-resolver:
       - 'docs'
       - 'documentation'
   default: patch
+filter-by-commitish: true
 sort-by: title
 template: |
   ## Changes
