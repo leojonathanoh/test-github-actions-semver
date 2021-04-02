@@ -40,6 +40,9 @@ version-resolver:
       - 'fix'
       - 'bugfix'
       - 'bug'
+      - 'style'
+      - 'docs'
+      - 'documentation'
   default: patch
 sort-by: title
 template: |
