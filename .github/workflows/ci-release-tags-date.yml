@@ -218,21 +218,23 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - uses: salsify/action-detect-and-tag-new-version@v2
-        with:
-          version-command: |
-            # E.g. 20210402
-            TODAYS_DATE=$( date -u '+%Y%m%d' )
-            # Is this the first tag for this date?
-            TODAYS_DATE_TAGS=$( git tag | grep "^$TODAYS_DATE" )
-            if [ -z "$TODAYS_DATE_TAGS" ]; then
-                # E.g. git tag 20210402.0.0
-                echo "$TODAYS_DATE.0.0" # Send this to stdout
-            else
-                # E.g. if there are  20210402.0.0,  20210402.0.1,  20210402.0.2, this returns 2
-                VERSION_MINOR_LATEST=$( echo "$TODAYS_DATE_TAGS" | cut -d '.' -f 3 | sort -nr )
-                # Our minor version
-                VERSION_MINOR=$( "$VERSION_MINOR_LATEST" + 1 )
-                # E.g. git tag 20210402.0.3
-                echo "$TODAYS_DATE.0.$VERSION_MINOR"  # Send this to stdout
-            fi
+      - name: tag-new-version
+        run: |
+          # E.g. 20210402
+          TODAYS_DATE=$( date -u '+%Y%m%d' )
+          # Is this the first tag for this date?
+          TODAYS_DATE_TAGS=$( git tag | grep "^$TODAYS_DATE" )
+          TAG=
+          if [ -z "$TODAYS_DATE_TAGS" ]; then
+              # E.g. git tag 20210402.0.0
+              TAG="$TODAYS_DATE.0.0" # Send this to stdout
+          else
+              # E.g. if there are  20210402.0.0,  20210402.0.1,  20210402.0.2, this returns 2
+              VERSION_MINOR_LATEST=$( echo "$TODAYS_DATE_TAGS" | cut -d '.' -f 3 | sort -nr )
+              # Our minor version
+              VERSION_MINOR=$( "$VERSION_MINOR_LATEST" + 1 )
+              # E.g. git tag 20210402.0.3
+              TAG="$TODAYS_DATE.0.$VERSION_MINOR"  # Send this to stdout
+          fi
+          echo "TAG: $TAG"
+          git push origin "$TAG"
