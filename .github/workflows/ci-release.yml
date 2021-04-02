@@ -1,9 +1,11 @@
-name: ci-tags-semver
+name: ci-release
 
 on:
   push:
-    tags:
-    - 'v[0-9].[0-9]+.[0-9]+'
+    branches:
+    - release
+    # tags:
+    # - 'v[0-9].[0-9]+.[0-9]+'
 
 jobs:
   windows-2016:
@@ -233,4 +235,3 @@ jobs:
           # tag: ${{ env.REF }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
