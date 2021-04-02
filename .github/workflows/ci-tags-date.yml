@@ -197,7 +197,7 @@ jobs:
     runs-on: ubuntu-16.04
     container:
       # image: theohbrothers/docker-powershell:7.2.0-preview.4-alpine-3.11-20210316-git
-      image: 7.2.0-preview.4-alpine-3.11-20210316
+      image: mcr.microsoft.com/powershell:7.2.0-preview.4-alpine-3.11-20210316
     steps:
     - uses: actions/checkout@v2
     - name: Display system info (linux)
