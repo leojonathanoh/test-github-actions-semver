@@ -222,7 +222,8 @@ jobs:
           # E.g. 20210402
           TODAYS_DATE=$( date -u '+%Y%m%d' )
           # Is this the first tag for this date?
-          TODAYS_DATE_TAGS=$( git tag -l | grep "^$TODAYS_DATE" )
+          git tag --list
+          TODAYS_DATE_TAGS=$( git tag --list | grep "^$TODAYS_DATE" )
           TAG=
           if [ -z "$TODAYS_DATE_TAGS" ]; then
               # E.g. 20210402.0.0
