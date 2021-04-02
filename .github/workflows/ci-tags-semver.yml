@@ -1,4 +1,4 @@
-name: ci-release-tags-semver
+name: ci-tags-semver
 
 on:
   push:
