@@ -238,4 +238,6 @@ jobs:
               TAG="$TODAYS_DATE.0.$VERSION_MINOR"  # Send this to stdout
           fi
           echo "TAG: $TAG"
-          git push origin "$TAG" || exit 1
+          git tag "$TAG"
+          git --no-pager log --graph --oneline --decorate --tags  2>&1 | grep "$TAG"
+          git push origin --tags || exit 1
