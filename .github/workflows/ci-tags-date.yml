@@ -209,7 +209,7 @@ jobs:
         # lscpu
         free
         df -h
-        pwd`
+        pwd
     - name: Powershell version
       run: |
         pwsh -NoLogo -NonInteractive -NoProfile -Command '$PSVersionTable'
