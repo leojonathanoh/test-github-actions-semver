@@ -218,21 +218,43 @@ jobs:
       run: |
         pwsh -NoLogo -NonInteractive -NoProfile -Command './test/test.ps1'
 
-  publish-draft-release:
+  update-draft-release:
     needs: [windows-2016, windows-2019, ubuntu-16-04, macos-10-15, test-powershell-6-0, test-powershell-6-1, test-powershell-6-1, test-powershell-7-0, test-powershell-7-1, test-powershell-7-2]
     if: github.ref == 'refs/heads/release'
     # if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
-      # - name: Set REF environment variable
-      #   run: |
-      #     REF=$( echo "${GITHUB_REF}" | rev | cut -d '/' -f 1 | rev )
-      #     echo "REF=$REF" >> $GITHUB_ENV
-      # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5
+      - id: release-drafter
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      tag_name: steps.release-drafter.outputs.tag_name
+
+  tag-new-versions:
+    needs: [windows-2016, windows-2019, ubuntu-16-04, macos-10-15, test-powershell-6-0, test-powershell-6-1, test-powershell-6-1, test-powershell-7-0, test-powershell-7-1, test-powershell-7-2, update-draft-release]
+    if: github.ref == 'refs/heads/release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: tag-new-versions
+        run: |
+          TAG=${{ needs.publish-draft-release.outputs.tag_name }}
+          git tag "$TAG"
+          git --no-pager log --graph --oneline --decorate --tags  2>&1 | grep "$TAG"
+          git push origin --tags || exit 1
+
+  publish-draft-release:
+    needs: [windows-2016, windows-2019, ubuntu-16-04, macos-10-15, test-powershell-6-0, test-powershell-6-1, test-powershell-6-1, test-powershell-7-0, test-powershell-7-1, test-powershell-7-2, update-draft-release, tag-new-versions]
+    if: github.ref == 'refs/heads/release'
+    # if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-drafter
+        uses: release-drafter/release-drafter@v5
         with:
           # config-name: release-drafter.yaml
           publish: true
-          # tag: ${{ env.REF }}
+          tag: ${{ needs.update-draft-release.outputs.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
