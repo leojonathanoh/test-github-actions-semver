@@ -218,6 +218,17 @@ jobs:
       run: |
         pwsh -NoLogo -NonInteractive -NoProfile -Command './test/test.ps1'
 
+  converge-master-and-release-branches:
+    if: github.ref == 'refs/heads/release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge release into master (fast-forward)
+        run: |
+          git checkout master
+          git merge release
+          git push origin master
+
   publish-draft-release:
     needs: [windows-2016, windows-2019, ubuntu-16-04, macos-10-15, test-powershell-6-0, test-powershell-6-1, test-powershell-6-1, test-powershell-7-0, test-powershell-7-1, test-powershell-7-2]
     if: github.ref == 'refs/heads/release'
@@ -231,3 +242,4 @@ jobs:
           publish: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
